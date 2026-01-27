@@ -19,4 +19,13 @@ class Animal:
         self.species = species
         self.age = age
 
-    
+    def make_sound(self, sound):
+        print(f'{self.name}: {sound}')
+
+    def display_your_info(self):
+        print(f'Name: {self.name}\nSpecies: {self.species}\nAge: {self.age}')
+
+dog = Animal('Bobik', 'dog', 10)
+dog.make_sound('bark! bark!')
+dog.display_your_info()
+
