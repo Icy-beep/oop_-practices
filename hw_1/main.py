@@ -128,9 +128,60 @@ class PassengerPlane:
         self.speed = new_speed
 
     def show_plane_info(self):
-        print(f'Manufacturer: {self.manufacturer}\nModel: {self.model}\nCapacity: {self.capacity} kg\nPassengers: {self.passengers} seats\nAltitude: {self.altitude} m\nSpeed: {self.speed} km/h')
+        print(f'Manufacturer: {self.manufacturer}\nModel: {self.model}\nCapacity: {self.capacity} kg\nPassengers: {self.passengers} seats\nAltitude: {self.altitude} m\nSpeed: {self.speed} km/h\n')
 
 plane = PassengerPlane('Bobik – Engineering', 'Dogster', 15000, 150, 0, 0)
 plane.takeoff()
 plane.touchdown()
 plane.show_plane_info()
+
+"""
+## **Задача №4.**
+
+Сформировать класс «**MusicAlbum**» для представления сущности «Музыкальный Альбом» в программе. 
+В качестве полей задаются: исполнитель, название альбома, жанр, список треков. 
+Реализовать следующие операции: добавить трек в альбом, удалить трек из альбома, воспроизвести указанный трек. 
+Реализовать метод вывода информации о музыкальном альбоме на экран. Метод вывода на экран должен аккумулировать состояние полей объекта.
+
+Примечание:
+
+Добавить трек в альбом – операция принимает на вход трек в формате строки и добавляет в список треков.
+
+Удалить трек из альбома – операция, принимает на вход название трека в формате строки и удаляет трек, если он имеется.
+
+Воспроизвести трек – операция, принимает на вход название трека и имитирует его воспроизведение выводом информации на консоль.
+"""
+
+class MusicAlbum:
+
+    artist: str
+    album_name: str
+    genre: str
+    track_list: list
+
+    def __init__(self, artist, album_name, genre, track_list):
+        self.artist = artist
+        self.album_name = album_name
+        self.genre = genre
+        self.track_list = track_list
+
+    def add_track(self, track: str):
+        self.track_list.append(track)
+
+    def delete_track(self, track: str):
+        self.track_list.remove(track)
+
+    def play_track(self, track: int):
+        print(f'Играет: {self.track_list[track + 1]}')
+
+    def show_album_info(self):
+        print(f'Album: {self.album_name} | Genre: {self.genre} | Artist: {self.artist} | Tracks: {len(self.track_list)}')
+
+
+album = MusicAlbum('Slipknot', 'Iowa', 'nu metal', ['(515)', 'People = Shit', 'Disasterpiece'])
+album.add_track('My Plague')
+album.add_track('111')
+album.delete_track('111')
+album.play_track(1)
+album.show_album_info()
+
