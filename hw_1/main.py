@@ -23,7 +23,7 @@ class Animal:
         print(f'{self.name}: {sound}')
 
     def display_your_info(self):
-        print(f'Name: {self.name}\nSpecies: {self.species}\nAge: {self.age}\n')
+        return f'Name: {self.name}\nSpecies: {self.species}\nAge: {self.age}\n'
 
 dog = Animal('Bobik', 'dog', 10)
 dog.make_sound('bark! bark!')
@@ -59,7 +59,7 @@ class Book:
         print(f'Page open! Grats!\nPage: {page} | Pages in book: {self.pages}')
 
     def display_book_info(self):
-        print(f'Title: {self.title} | Author: {self.author} | Pages: {self.pages}')
+        return 'Title: {self.title} | Author: {self.author} | Pages: {self.pages}'
 
 book = Book('The Adventures of Bobik', 'Bobik', 200)
 #user_input = input('Enter a page: ')
@@ -128,7 +128,7 @@ class PassengerPlane:
         self.speed = new_speed
 
     def show_plane_info(self):
-        print(f'Manufacturer: {self.manufacturer}\nModel: {self.model}\nCapacity: {self.capacity} kg\nPassengers: {self.passengers} seats\nAltitude: {self.altitude} m\nSpeed: {self.speed} km/h\n')
+        return f'Manufacturer: {self.manufacturer}\nModel: {self.model}\nCapacity: {self.capacity} kg\nPassengers: {self.passengers} seats\nAltitude: {self.altitude} m\nSpeed: {self.speed} km/h\n'
 
 plane = PassengerPlane('Bobik – Engineering', 'Dogster', 15000, 150, 0, 0)
 plane.takeoff()
@@ -172,10 +172,10 @@ class MusicAlbum:
         self.track_list.remove(track)
 
     def play_track(self, track: int):
-        print(f'Играет: {self.track_list[track + 1]}')
+        return f'Играет: {self.track_list[track + 1]}'
 
     def show_album_info(self):
-        print(f'Album: {self.album_name} | Genre: {self.genre} | Artist: {self.artist} | Tracks: {len(self.track_list)}')
+        return f'Album: {self.album_name} | Genre: {self.genre} | Artist: {self.artist} | Tracks: {len(self.track_list)}'
 
 
 album = MusicAlbum('Slipknot', 'Iowa', 'nu metal', ['(515)', 'People = Shit', 'Disasterpiece'])
