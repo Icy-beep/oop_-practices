@@ -1,4 +1,6 @@
 import __future__
+import random
+
 
 class Smartphone:
 
@@ -24,7 +26,7 @@ class Smartphone:
     def __str__(self):
         status = 'Включен' if self.is_on else 'Выключен'
         return (
-        f'----- Характеристики смартфона -----\n'
+        f'\n----- Характеристики смартфона -----\n'
         f'      Марка: {self.brand}\n'
         f'      Модель: {self.model}\n'
         f'      Операционная система: {self.os}\n'
@@ -128,5 +130,105 @@ my_smartphone.set_is_on()
 print(my_smartphone)
 
 print(my_smartphone.install_app('Not a Game', 2000))
+
+
+class Potion:
+
+    EFFECTS = ['restore_health', 'restore_magicka', 'fix_bones', 'repair']
+
+    __name: str
+    __ingredients: list[str]
+    __difficulty: int
+    __effect: str
+    __state: bool
+
+    def __init__(self, name: str, ingredients: list[str], difficulty: int | None, effect: str, state: bool):
+        self.__name = name
+        self.__ingredients = ingredients
+        self.__difficulty = difficulty
+        self.__effect = effect
+        self.__state = state
+
+    def __str__(self):
+        return (
+            f'\nName: {self.__name}\n'
+            f'Ingredients: {self.__ingredients}\n'
+            f'Difficulty: {self.__difficulty}\n'
+            f'Effect: {self.__effect}\n'
+            f'State: {self.__state}\n'
+        )
+
+    def get_name(self) -> str:
+        return self.__name
+
+    def get_ingredients(self) -> list[str]:
+        return self.__ingredients[:]
+
+    def get_difficulty(self) -> int:
+        return self.__difficulty
+
+    def get_effect(self) -> str:
+        return self.__effect
+
+    def get_state(self) -> bool:
+        return self.__state
+
+    def set_effect(self, effect: str) -> None:
+        self.__effect = effect
+
+    def set_difficulty(self, difficulty: int) -> None:
+        if 1 <= difficulty <= 10:
+            self.__difficulty = difficulty
+
+    def set_state(self, state: bool) -> None:
+        self.__state = state
+
+    def add_ingredient(self, ingredient: str) -> None:
+        if ingredient and ingredient.strip():
+            self.__ingredients.append(ingredient)
+        else:
+            f'{ingredient} is not a valid ingredient!'
+
+    def remove_ingredient(self, ingredient: str) -> None:
+        if ingredient and ingredient.strip() and ingredient in self.__ingredients:
+            self.__ingredients.remove(ingredient)
+        else:
+            f'{ingredient} is not a valid ingredient!'
+
+    def craft_potion(self) -> None:
+        if self.__ingredients and len(self.__ingredients) > 1:
+            difficulty = random.randint(1, 10)
+            self.set_difficulty(difficulty)
+            difficult_roll = random.randint(1, 10)
+            if difficult_roll >= self.__difficulty:
+                effect_roll = random.randint(0, len(Potion.EFFECTS) - 1)
+                self.set_effect(Potion.EFFECTS[effect_roll])
+                self.set_state(True)
+                self.__name = f'Potion of {self.__effect.replace("_", " ")}'
+
+
+potion = Potion('', [], None, '', False)
+print(potion)
+
+potion.craft_potion()
+
+print(potion)
+
+potion.add_ingredient('Lavender')
+
+print(potion)
+
+potion.add_ingredient('Root of Earth')
+
+print(potion)
+
+potion.craft_potion()
+
+print(potion)
+
+
+
+
+
 
 
