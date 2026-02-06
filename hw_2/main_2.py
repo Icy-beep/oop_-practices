@@ -170,7 +170,7 @@ class GeometryUtils:
     @staticmethod
     def calculate_triangle_area_heron(a: float, b: float, c:float) -> float:
         if a <= 0 or b <= 0 or c <= 0:
-            raise ValueError("sides must be positive numbers")
+            raise ValueError('sides must be positive numbers')
 
         if a + b <= c or a + c <= b or b + c <= a:
             raise ValueError('that triangle doesnt exist')
@@ -179,3 +179,62 @@ class GeometryUtils:
         area = math.sqrt(p * (p - a) * (p - b) * (p - c))
 
         return area
+
+class Vector:
+
+    __x: float
+    __y: float
+    __z: float
+
+    def __init__(self, x: float, y: float, z: float):
+        self.__x = x
+        self.__y = y
+        self.__z = z
+
+    def __str__(self) -> str:
+        return f'({self.__x}, {self.__y}, {self.__z})'
+
+    def __add__(self, other):
+        return Vector(self.__x + other.__x, self.__y + other.__y, self.__z + other.__z)
+
+    def __sub__(self, other):
+        return Vector(self.__x - other.__x, self.__y - other.__y, self.__z - other.__z)
+
+    def __mul__(self, other):
+        if isinstance(other, Vector):
+            return self.__x * other.__x + self.__y * other.__y + self.__z * other.__z
+        elif isinstance(other, (int, float)):
+            return Vector(self.__x * other, self.__y * other, self.__z * other)
+        else:
+            raise TypeError('Умножение возможно только на число или другой вектор')
+
+    def cross_product(self, other):
+        if not isinstance(other, Vector):
+            raise TypeError('Векторное произведение требует второй вектор')
+
+        res_x = self.__y * other.__z - self.__z * other.__y
+        res_y = self.__z * other.__x - self.__x * other.__z
+        res_z = self.__x * other.__y - self.__y * other.__x
+
+        return Vector(res_x, res_y, res_z)
+
+    def norm(self) -> float:
+        return math.sqrt(self.__x ** 2 + self.__y ** 2 + self.__z ** 2)
+
+number = 3.5
+
+vector = Vector(-1, 3, 5)
+other_vector = Vector(3.5, 2, 3)
+
+print(vector)
+
+print(vector + other_vector)
+print(vector - other_vector)
+print(vector * other_vector)
+
+print(vector.cross_product(other_vector))
+print(vector.norm())
+
+
+
+
