@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import math
+
 class ModelWindow:
 
    UP, DOWN, LEFT, RIGHT = 'up', 'down', 'left', 'right'
@@ -134,4 +136,46 @@ window.resize(20000, 200000)
 
 print(window)
 
+class GeometryUtils:
+    PI = 3.141592653589793
 
+    @staticmethod
+    def calculate_circle_area(radius: float) -> float:
+        if radius < 0:
+            raise ValueError('radius cannot be negative')
+
+        return GeometryUtils.PI * radius ** 2
+
+    @staticmethod
+    def calculate_circle_perimeter(radius: float) -> float:
+        if radius < 0:
+            raise ValueError('radius cannot be negative')
+
+        return 2 * GeometryUtils.PI * radius
+
+    @staticmethod
+    def calculate_rectangle_area(width: int, height: int) -> float:
+        if width < 0 or height < 0:
+            raise ValueError('width and height cannot be negative')
+
+        return width * height
+
+    @staticmethod
+    def calculate_rectangle_perimeter(width: int, height: int) -> float:
+        if width < 0 or height < 0:
+            raise ValueError('width and height cannot be negative')
+
+        return 2 * (width + height)
+
+    @staticmethod
+    def calculate_triangle_area_heron(a: float, b: float, c:float) -> float:
+        if a <= 0 or b <= 0 or c <= 0:
+            raise ValueError("sides must be positive numbers")
+
+        if a + b <= c or a + c <= b or b + c <= a:
+            raise ValueError('that triangle doesnt exist')
+
+        p = (a + b + c) / 2
+        area = math.sqrt(p * (p - a) * (p - b) * (p - c))
+
+        return area
