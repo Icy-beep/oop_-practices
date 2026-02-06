@@ -1,0 +1,19 @@
+# Dependencies
+/node_modules
+/vendor
+.venv
+
+# Build artifacts
+/build
+/dist
+/tmp
+*.log
+
+# Environment variables and secrets
+.env
+.env.local
+
+# OS/IDE specific files
+.DS_Store
+.vscode/
+.idea/
