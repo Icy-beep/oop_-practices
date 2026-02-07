@@ -271,5 +271,73 @@ class Time:
 
         new_seconds = self.__to_seconds() + other
 
+        return self.__from_seconds(new_seconds)
 
+    def __sub__(self, other):
+        if not isinstance(other, int):
+            raise TypeError('вычитать можно только целое количество секунд')
+
+        new_seconds = self.__to_seconds() - other
+
+        return self.__from_seconds(new_seconds)
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __rsub__(self, other):
+        if not isinstance(other, int):
+            raise TypeError('вычитать можно только целое количество секунд')
+
+        new_seconds = other - self.__to_seconds()
+
+        return self.__from_seconds(new_seconds)
+
+    def __eq__(self, other):
+        if not isinstance(other, Time):
+            raise TypeError("сравнить можно только объекты класса Time")
+        return self.__to_seconds() == other.__to_seconds()
+
+    def __ne__(self, other):
+        if not isinstance(other, Time):
+            raise TypeError("сравнить можно только объекты класса Time")
+        return self.__to_seconds() != other.__to_seconds()
+
+    def __gt__(self, other):
+        if not isinstance(other, Time):
+            raise TypeError("сравнить можно только объекты класса Time")
+        return self.__to_seconds() > other.__to_seconds()
+
+    def __lt__(self, other):
+        if not isinstance(other, Time):
+            raise TypeError("сравнить можно только объекты класса Time")
+        return self.__to_seconds() < other.__to_seconds()
+
+
+
+    def get_hour(self):
+        return self.__hour
+
+    def get_minute(self):
+        return self.__minute
+
+    def get_second(self):
+        return self.__second
+
+
+
+real_time = Time(0, 0, 0)
+
+print(real_time)
+
+real_time += 3600
+
+print(real_time)
+
+real_time += -100
+
+print(real_time)
+
+real_time += 25
+
+print(real_time)
 
