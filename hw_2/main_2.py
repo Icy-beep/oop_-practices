@@ -235,6 +235,41 @@ print(vector * other_vector)
 print(vector.cross_product(other_vector))
 print(vector.norm())
 
+class Time:
+
+    __hour: int
+    __minute: int
+    __second: int
+
+    def __init__(self, hour: int, minute: int, second: int):
+        total_seconds = hour * 3600 + minute * 60 + second
+        h, remainder = divmod(total_seconds, 3600)
+        m, s = divmod(remainder, 60)
+
+        self.__hour = h % 24
+        self.__minute = m
+        self.__second = s
+
+    def __str__(self):
+        return f'\n{self.__hour:02}:{self.__minute:02}:{self.__second:02}\n'
+
+    def __to_seconds(self) -> int:
+        return self.__hour * 3600 + self.__minute * 60 + self.__second
+
+    @classmethod
+    def __from_seconds(cls, total_seconds:int):
+        h, remainder = divmod(total_seconds, 3600)
+        m, s = divmod(remainder, 60)
+
+        h = h % 24
+
+        return cls(h, m, s)
+
+    def __add__(self, other):
+        if not isinstance(other, int):
+            raise TypeError('складывать можно только с целым количеством секунд')
+
+        new_seconds = self.__to_seconds() + other
 
 
 
