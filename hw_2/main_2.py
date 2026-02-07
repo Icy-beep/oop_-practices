@@ -341,3 +341,17 @@ real_time += 25
 
 print(real_time)
 
+not_real_time = Time(0, 0, 0)
+
+print(not_real_time)
+
+not_real_time += 3600
+print(not_real_time)
+
+print(f'real time: {real_time}' if real_time > not_real_time else f'not_real_time: {not_real_time}')
+print(f'Equal' if real_time == not_real_time else 'Not equal\n')
+
+real_time += 2500
+
+print(f'real time: {real_time}' if real_time > not_real_time else f'not_real_time: {not_real_time}')
+print(f'Equal' if real_time == not_real_time else 'Not equal')
